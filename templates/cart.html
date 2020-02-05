@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+    <div class="breadcrumb">
+        <div class="container">
+            <a class="breadcrumb-item" href="home.html">Home</a>
+            <span class="breadcrumb-item active">Cart</span>
+        </div>
+    </div>
+    <section class="static about-sec">
+        <div class="container">
+            <h1>Cart</h1>
+
+        </div>
+        <div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+
+            <th></th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for listitem in itemList %}
+            <tr>
+
+                <td><img src="{{ listitem.get_image() }}" alt="bruh" height="100px" width="50px"></td>
+                <td>{{ listitem.get_name() }}</td>
+                <td>{{ listitem.get_price() }}</td>
+                <td>{{ listitem.get_quantity() }}</td>
+                <td>${{ listitem.get_total() }}</td>
+                <td>
+                    <form action="{{ url_for('deleteItem', id=listitem.get_itemID()) }}" method="POST">
+                        <input type="submit" value="Delete" class="btn btndanger"
+                               onclick="return confirm('Are you sure you want to delete this item?');">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>${{ grandtotal }}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+        <div class = "row">
+            <div class = "col-4"></div>
+            <div class = "col-2">
+                <form action="{{ url_for('deleteallItem') }}" method="POST">
+        <input type="submit" value="Delete All" class="btn btndanger"
+               onclick="return confirm('Are you sure you want to delete ALL items?');">
+    </form>
+            </div>
+            <div class = "col-2">
+                <button onclick="window.location.href = 'home';" class="btn">Shop
+                </button>
+            </div>
+            <div class = "col-2">
+                <button onclick="window.location.href = 'cart';" class="btn black">Update
+                </button>
+            </div>
+            <div class = "col-2">
+                <button onclick="window.location.href = 'checkout';" class="btn black">Check Out
+                </button>
+            </div>
+        </div>
+    </div>
+    </section>
+{% endblock %}

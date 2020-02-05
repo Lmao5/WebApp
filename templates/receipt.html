@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <div class="breadcrumb">
+      <div class="container">
+          <a class="breadcrumb-item" href="shop.html">Home</a>
+          <span class="breadcrumb-item">Cart</span>
+          <span class="breadcrumb-item active">Checkout</span>
+      </div>
+  </div>
+  <section class="static about-sec">
+        <section class="static about-sec">
+        <div class="container">
+            <h1>Receipt</h1>
+            <h3>Thank you for your purchase!</h3>
+            <p>You have bought: ${{ grandtotal }} worth of stuff</p>
+            <!----<h5> Your order consisted of:</h5>
+                {% for listitem in itemList %}
+                <p> {{ listitem.get_quantity() }} copies of {{ listitem.get_name() }}</p>
+                {% endfor %}
+            -->
+            <h2>Your verification code for this order is </h2>
+            <h3>{{ verification }}</h3>
+
+
+        </div>
+    </section>
+    </section>
+
+
+{% endblock %}
